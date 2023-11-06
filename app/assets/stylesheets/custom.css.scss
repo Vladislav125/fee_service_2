@@ -1,0 +1,34 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// общие
+body {
+  padding-top: 60px;
+} 
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+.user_choice {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 80px;
+  margin: 20px;
+  border: solid 1px;
+  border-color: rgb(3, 3, 87);
+  background-color: aqua;
+  color: black;
+  font-size: 24px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.block_img {
+  height: 60px;
+}
+footer {
+  margin-top: 50px;
+}

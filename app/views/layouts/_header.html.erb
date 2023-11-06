@@ -1,0 +1,17 @@
+<header class="navbar navbar-expand-lg navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "fee_service", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Главная", root_path %></li>
+        <li><%= link_to "Помощь", "#" %></li>
+        <%# <% if logged_in? %> 
+          <li><%= link_to "Профиль", "#" %></li>
+          <li><%= link_to "Выйти", "#" %></li>
+        <%# <% else %> 
+          <li><%= link_to "Войти", "#" %></li>
+        <%# <% end %> 
+      </ul>
+    </nav>
+  </div>
+</header>
