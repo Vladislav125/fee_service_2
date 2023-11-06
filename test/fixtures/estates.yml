@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cadastral_number: MyString
+  square: 1
+  address: MyString
+  cost: 1
+  type: 
+  reg_date: 2023-11-07
+
+two:
+  cadastral_number: MyString
+  square: 1
+  address: MyString
+  cost: 1
+  type: 
+  reg_date: 2023-11-07

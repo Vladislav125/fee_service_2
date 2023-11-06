@@ -1,0 +1,13 @@
+class CreateVehicles < ActiveRecord::Migration[7.0]
+  def change
+    create_table :vehicles do |t|
+      t.string :state_number
+      t.string :model
+      t.integer :power
+      t.string :type
+      t.date :reg_date
+
+      t.timestamps
+    end
+  end
+end

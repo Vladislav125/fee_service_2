@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  login: MyString
+  firstname: MyString
+  surname: MyString
+  middlename: MyString
+  passport: MyString
+  borndate: 2023-11-07
+  address: MyString
+
+two:
+  login: MyString
+  firstname: MyString
+  surname: MyString
+  middlename: MyString
+  passport: MyString
+  borndate: 2023-11-07
+  address: MyString
