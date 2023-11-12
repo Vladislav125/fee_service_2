@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :firstname
       t.string :surname
       t.string :middlename
-      t.string :passport
+      t.string :passport, :unique
       t.date :borndate
       t.string :address
 
