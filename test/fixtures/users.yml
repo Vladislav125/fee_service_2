@@ -2,18 +2,24 @@
 
 one:
   login: MyString
-  firstname: MyString
-  surname: MyString
-  middlename: MyString
+  password: MyString
   passport: MyString
-  borndate: 2023-11-07
+  surname: MyString
+  firstname: MyString
+  middlename: MyString
+  born_date: 2023-11-14
   address: MyString
+  admin: false
+  inspector: false
 
 two:
   login: MyString
-  firstname: MyString
-  surname: MyString
-  middlename: MyString
+  password: MyString
   passport: MyString
-  borndate: 2023-11-07
+  surname: MyString
+  firstname: MyString
+  middlename: MyString
+  born_date: 2023-11-14
   address: MyString
+  admin: false
+  inspector: false
