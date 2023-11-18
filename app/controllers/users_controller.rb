@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     if @user.save
       # UserMailer.account_activation(@user).deliver_now
       flash[:info] = "Учётная запись создана."
-      redirect_to root_url
+      redirect_to account_url
     else
       render :new, status: :unprocessable_entity, content_type: "text/html"
     end

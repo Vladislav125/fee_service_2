@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
-  before_save :set_inn
+  before_create :set_inn
   
   validates :inn, presence: true,
                   uniqueness: true
