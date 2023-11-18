@@ -6,8 +6,8 @@
         <li><%= link_to "Главная", root_path %></li>
         <li><%= link_to "Помощь", "#" %></li>
         <li><%= link_to "Профиль", current_user %></li>
-        <% if logged_in? %>%
-          <li><%= button_to('Выйти', logout_path, class:"button-blue", :method => :delete) %></li>
+        <% if logged_in? %>
+          <li><%= button_to('Выйти', logout_path, class: "button-blue", :method => :delete) %></li>
         <% else %>
           <li><%= link_to "Войти", login_path %></li>
         <% end %>
