@@ -5,11 +5,11 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Главная", root_path %></li>
         <li><%= link_to "Помощь", "#" %></li>
-        <li><%= link_to "Профиль", "#" %></li>
-        <% if user_signed_in? %>%
-          <li><%= button_to('Выйти', '/users/sign_out', class:"button-blue", :method => :delete) %></li>
+        <li><%= link_to "Профиль", current_user %></li>
+        <% if logged_in? %>%
+          <li><%= button_to('Выйти', logout_path, class:"button-blue", :method => :delete) %></li>
         <% else %>
-          <li><%= link_to "Войти", new_user_session_url %></li>
+          <li><%= link_to "Войти", login_path %></li>
         <% end %>
       </ul>
     </nav>

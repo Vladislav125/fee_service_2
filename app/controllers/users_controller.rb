@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @users = User.order(:surname).page params[:page]
   end
 
   # GET /users/1 or /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -22,49 +25,60 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      # UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Учётная запись создана."
+      redirect_to root_url
+    else
+      render :new, status: :unprocessable_entity, content_type: "text/html"
     end
   end
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      flash[:success] = "Данные профиля обновлены."
+      redirect_to @user
+    else
+      render :edit, status: :unprocessable_entity, content_type: "text/html"
     end
   end
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    User.find(params[:id]).destroy
+    flash[:success] = "Пользователь удалён"
+    redirect_to users_url
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+    
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:login, :password, :passport, :surname, :firstname, :middlename, :born_date, :address, :admin, :inspector)
+      params.require(:user).permit(:password, :passport, :surname, :firstname, :middlename, :born_date, :address)
+    end
+
+    # предварительные фильтры
+
+    # подтвверждает вход пользователя
+    def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Пожалуйста, авторизуйтесь."
+        redirect_to login_path
+      end
+    end
+
+    # подтверждает права пользователя
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
+
+    # подтверждает наличие административных привилегий
+    def admin_user
+      redirect_to(root_path) unless current_user.admin?
     end
 end

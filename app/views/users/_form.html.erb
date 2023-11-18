@@ -12,56 +12,41 @@
   <% end %>
 
   <div>
-    <%= form.label :login, style: "display: block" %>
-    <%= form.text_field :login %>
-  </div>
-
-  <div>
-    <%= form.label :password, style: "display: block" %>
-    <%= form.text_field :password %>
-  </div>
-
-  <div>
-    <%= form.label :passport, style: "display: block" %>
+    <%= form.label :passport, "Паспорт", style: "display: block" %>
     <%= form.text_field :passport %>
   </div>
 
   <div>
-    <%= form.label :surname, style: "display: block" %>
+    <%= form.label :password, "Пароль", style: "display: block" %>
+    <%= form.text_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :surname, "Фамилия", style: "display: block" %>
     <%= form.text_field :surname %>
   </div>
 
   <div>
-    <%= form.label :firstname, style: "display: block" %>
+    <%= form.label :firstname, "Имя", style: "display: block" %>
     <%= form.text_field :firstname %>
   </div>
 
   <div>
-    <%= form.label :middlename, style: "display: block" %>
+    <%= form.label :middlename, "Отчество", style: "display: block" %>
     <%= form.text_field :middlename %>
   </div>
 
   <div>
-    <%= form.label :born_date, style: "display: block" %>
+    <%= form.label :born_date, "Дата рождения", style: "display: block" %>
     <%= form.date_field :born_date %>
   </div>
 
   <div>
-    <%= form.label :address, style: "display: block" %>
+    <%= form.label :address, "Место жительства", style: "display: block" %>
     <%= form.text_field :address %>
   </div>
 
   <div>
-    <%= form.label :admin, style: "display: block" %>
-    <%= form.check_box :admin %>
-  </div>
-
-  <div>
-    <%= form.label :inspector, style: "display: block" %>
-    <%= form.check_box :inspector %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit "Продолжить", class: "btn btn-primary" %>
   </div>
 <% end %>
