@@ -1,0 +1,2 @@
+module InspectorActionsHelper
+end

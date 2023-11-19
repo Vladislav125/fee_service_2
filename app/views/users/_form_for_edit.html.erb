@@ -1,36 +1,21 @@
 <%= form_with(model: user) do |form| %>
   <% if user.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2>При редактировании пользователя возникои следующие ошибки:</h2>
 
       <ul>
         <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li><%= error.message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
   <div>
-    <%= form.label :snils, "СНИЛС", style: "display: block" %>
-    <%= form.text_field :snils %>
-  </div>
-
-  <div>
     <%= form.label :passport, "Паспорт", style: "display: block" %>
     <%= form.text_field :passport %>
   </div>
-
-  <div>
-    <%= form.label :password, "Пароль", style: "display: block" %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div>
-    <%= form.label :password_confirmation, "Подтверждение пароля", style: "display: block" %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-
+  
   <div>
     <%= form.label :surname, "Фамилия", style: "display: block" %>
     <%= form.text_field :surname %>
@@ -54,6 +39,11 @@
   <div>
     <%= form.label :address, "Место жительства", style: "display: block" %>
     <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :income, "Доход", style: "display: block" %>
+    <%= form.text_field :income %>
   </div>
 
   <div>

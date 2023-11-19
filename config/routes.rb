@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'index' => 'inspector_actions#index'
+  get '/show_user/:id', to: 'inspector_actions#show_user', as: 'show_user'
   root 'main_page#home'
   get 'sessions/new'
   get 'account' => 'personal_actions#account'

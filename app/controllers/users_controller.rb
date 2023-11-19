@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    if @user.update(user_params)
+    if @user.update(user_params_for_edit)
       flash[:success] = "Данные профиля обновлены."
       redirect_to @user
     else
@@ -61,7 +61,11 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:password, :password_confirmation, :passport, :surname, :firstname, :middlename, :born_date, :address)
+      params.require(:user).permit(:snils, :password, :password_confirmation, :passport, :surname, :firstname, :middlename, :born_date, :address)
+    end
+
+    def user_params_for_edit
+      params.require(:user).permit(:passport, :surname, :firstname, :middlename, :born_date, :address, :income)
     end
 
     # предварительные фильтры

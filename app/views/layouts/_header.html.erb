@@ -8,7 +8,7 @@
         <li><%= link_to "Профиль", account_path %></li>
         <% if logged_in? %>
           <% if current_user.admin? || current_user.inspector? %>
-            <li><%= link_to "Пользователи", users_path %></li>
+            <li><%= link_to "Пользователи", index_path %></li>
           <% end %>
           <li><%= button_to('Выйти', logout_path, class: "button-blue", :method => :delete) %></li>
         <% else %>

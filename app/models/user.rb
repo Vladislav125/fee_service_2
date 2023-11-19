@@ -2,6 +2,11 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   before_create :set_inn
   
+  VALID_SNILS_REGEX = /\A(\d{3}-){3}\d{2}\z/
+  validates :snils, presence: { message: "Поле СНИЛС не может быть пустым." },
+                    uniqueness: { message: "Пользователь с таким СНИЛС уже зарегистрирован." },
+                    format: { with: VALID_SNILS_REGEX, 
+                              message: "Формат СНИЛС не соответствует: 000-000-000-00." }
   validates :inn, uniqueness: true
   VALID_PASSPORT_REGEX = /\A[1-9]\d{3} \d{6}\z/
   validates :passport, presence: { message: "Поле Паспорт не может быть пустым." },
@@ -29,6 +34,8 @@ class User < ApplicationRecord
   validates :address, presence: { message: "Поле Место жительства не может быть пустым." },
                       length: { maximum: 100, 
                                 message: "Поле Место жительства может содержать не более 100 символов." }
+  VALID_INCOME_REGEX = /\A[1-9]\d*\z/
+  validates :income, format: { with: VALID_INCOME_REGEX, message: "Некорректно заполнено поле доход." }
   has_secure_password
   validates :password, presence: { message: "Поле Пароль не может быть пустым." },
                        length: { minimum: 8, 

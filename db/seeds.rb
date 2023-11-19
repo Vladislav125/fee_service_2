@@ -5,7 +5,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.create!(surname: "Мясоедов",
+User.create!(snils: "100-100-100-00",
+             surname: "Мясоедов",
              firstname: "Владислав",
              middlename: "Антонович",
              passport: "1000 000000",
@@ -16,7 +17,8 @@ User.create!(surname: "Мясоедов",
              inn: "100000000000",
              admin: true,
              inspector: false)
-User.create!(surname: "Макгрейди",
+User.create!(snils: "100-000-000-00",
+             surname: "Макгрейди",
              firstname: "Трейси",
              middlename: "",
              passport: "1000 000002",
@@ -27,3 +29,15 @@ User.create!(surname: "Макгрейди",
              inn: "100000000002",
              admin: false,
              inspector: true)
+User.create!(snils: "100-000-000-01",
+             surname: "Карри",
+             firstname: "Стефен",
+             middlename: "",
+             passport: "1000 000003",
+             password: "password",
+             password_confirmation: "password",
+             born_date: "2003-12-13",
+             address: "Москва",
+             inn: "100000000003",
+             admin: false,
+             inspector: false)
