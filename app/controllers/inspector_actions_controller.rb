@@ -8,6 +8,11 @@ class InspectorActionsController < ApplicationController
 
   def show_user
     @user = User.find(params[:id])
+    @estates = Estate.where(user_id: @user.id)
+  end
+
+  def edit_user
+    
   end
 
   private

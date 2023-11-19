@@ -1,2 +1,9 @@
-<h1><%= @user %></h1>
-<p>Find me in app/views/inspector_actions/show_user.html.erb</p>
+<h2><%= @user.full_name %></h2>
+<h3>ИНН: <%= @user.inn %></h3>
+<h3>Доход: <%= @user.income %></h3>
+<p><%= link_to "Добавить доход", edit_user_path(@user.id) %></p>
+<p><%= link_to "Добавить недвижимость", new_estate_path(@user.id) %></p>
+<p><%= link_to "Добавить транспортное средство", edit_user_path(@user.id) %></p>
+<% @estates.each do |estate| %>
+  <%= link_to estate.address, estate_path(estate.id) %>
+<% end %>

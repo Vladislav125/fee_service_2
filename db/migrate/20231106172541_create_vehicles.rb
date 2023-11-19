@@ -6,6 +6,7 @@ class CreateVehicles < ActiveRecord::Migration[7.0]
       t.integer :power
       t.string :type
       t.date :reg_date
+      t.belongs_to :user
 
       t.timestamps
     end

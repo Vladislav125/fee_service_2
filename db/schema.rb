@@ -16,10 +16,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_175821) do
     t.integer "square"
     t.string "address"
     t.integer "cost"
-    t.string "type"
+    t.string "estate_type"
     t.date "reg_date"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_estates_on_user_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -28,8 +30,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_175821) do
     t.string "org_kpp"
     t.string "address"
     t.integer "income"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_organizations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_175821) do
     t.string "middlename"
     t.date "born_date", null: false
     t.string "address", null: false
-    t.integer "income"
+    t.integer "income", default: 0, null: false
     t.boolean "admin", default: false
     t.boolean "inspector", default: false
     t.string "remember_digest"
@@ -57,8 +61,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_175821) do
     t.integer "power"
     t.string "type"
     t.date "reg_date"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
 end

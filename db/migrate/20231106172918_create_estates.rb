@@ -5,8 +5,9 @@ class CreateEstates < ActiveRecord::Migration[7.0]
       t.integer :square
       t.string :address
       t.integer :cost
-      t.string :type
+      t.string :estate_type
       t.date :reg_date
+      t.belongs_to :user
 
       t.timestamps
     end

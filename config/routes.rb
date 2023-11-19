@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/new_estate/:id', to: 'estates#new', as: 'new_estate'
+  post '/create_estate/:user_id', to: 'estates#create', as: 'create_estate'
+  get '/estate/:id', to: 'estates#show', as: 'estate'
+  delete '/estate_delete/:id', to: 'estates#destroy', as: 'estate_delete'
   get 'index' => 'inspector_actions#index'
   get '/show_user/:id', to: 'inspector_actions#show_user', as: 'show_user'
   root 'main_page#home'

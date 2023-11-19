@@ -34,7 +34,7 @@ class User < ApplicationRecord
   validates :address, presence: { message: "Поле Место жительства не может быть пустым." },
                       length: { maximum: 100, 
                                 message: "Поле Место жительства может содержать не более 100 символов." }
-  VALID_INCOME_REGEX = /\A[1-9]\d*\z/
+  VALID_INCOME_REGEX = /\A0|([1-9]\d*)\z/
   validates :income, format: { with: VALID_INCOME_REGEX, message: "Некорректно заполнено поле доход." }
   has_secure_password
   validates :password, presence: { message: "Поле Пароль не может быть пустым." },

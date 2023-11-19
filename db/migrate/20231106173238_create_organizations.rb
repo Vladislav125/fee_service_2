@@ -6,6 +6,7 @@ class CreateOrganizations < ActiveRecord::Migration[7.0]
       t.string :org_kpp
       t.string :address
       t.integer :income
+      t.belongs_to :user
 
       t.timestamps
     end
