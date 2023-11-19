@@ -3,10 +3,6 @@ class PersonalActionsController < ApplicationController
 
   def account
     @user = current_user
-    @full_name = @user.surname + ' ' + @user.firstname
-    if !@user.middlename.empty?
-      @full_name += ' ' + @user.middlename
-    end
   end
 
   private

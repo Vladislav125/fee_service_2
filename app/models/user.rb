@@ -2,8 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   before_create :set_inn
   
-  validates :inn, presence: true,
-                  uniqueness: true
+  validates :inn, uniqueness: true
   VALID_PASSPORT_REGEX = /\A[1-9]\d{3} \d{6}\z/
   validates :passport, presence: { message: "Поле Паспорт не может быть пустым." },
                        uniqueness: { message: "Пользователь с таким паспортом уже зарегистрирован." },
@@ -31,10 +30,14 @@ class User < ApplicationRecord
                       length: { maximum: 100, 
                                 message: "Поле Место жительства может содержать не более 100 символов." }
   has_secure_password
-  validates :password, length: { minimum: 8, 
+  validates :password, presence: { message: "Поле Пароль не может быть пустым." },
+                       length: { minimum: 8, 
                                  maximum: 100, 
                                  too_short: "Минимальная длина пароля: 8 символов.", 
                                  too_long: "Максимальная длина пароля: 100." }
+  validates :password_confirmation, presence: { message: "Поле Подтверждение пароля не может быть пустым." }
+
+  paginates_per 10
 
   # возвращает случайный токен
   def self.new_token
@@ -58,6 +61,14 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end   
+
+  def full_name
+    full_name = surname + ' ' + firstname
+    if !middlename.empty?
+      full_name += ' ' + middlename
+    end
+    full_name
+  end
 
   private
 

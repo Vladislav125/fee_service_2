@@ -1,41 +1,8 @@
 <div id="<%= dom_id user %>">
   <p>
-    <strong>INN:</strong>
+    <%= link_to user.full_name, user_path(user.id) %>
+  </p>
+  <p>
     <%= user.inn %>
-  </p>
-
-  <p>
-    <strong>Password:</strong>
-    <%= user.password %>
-  </p>
-
-  <p>
-    <strong>Passport:</strong>
-    <%= user.passport %>
-  </p>
-
-  <p>
-    <strong>Surname:</strong>
-    <%= user.surname %>
-  </p>
-
-  <p>
-    <strong>Firstname:</strong>
-    <%= user.firstname %>
-  </p>
-
-  <p>
-    <strong>Middlename:</strong>
-    <%= user.middlename %>
-  </p>
-
-  <p>
-    <strong>Born date:</strong>
-    <%= user.born_date %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= user.address %>
   </p>
 </div>

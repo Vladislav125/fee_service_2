@@ -22,6 +22,11 @@
   </div>
 
   <div>
+    <%= form.label :password_confirmation, "Подтверждение пароля", style: "display: block" %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <div>
     <%= form.label :surname, "Фамилия", style: "display: block" %>
     <%= form.text_field :surname %>
   </div>
