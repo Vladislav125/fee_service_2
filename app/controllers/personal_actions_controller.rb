@@ -1,6 +1,5 @@
 class PersonalActionsController < ApplicationController
-  before_action :logged_in_user, only: [:account, :become_entrepreneur, :confirm_status]
-  before_action :correct_user, only: [:account, :become_entrepreneur, :confirm_status]
+  before_action :logged_in_user, only: [:account, :become_entrepreneur, :confirm_status, :property]
 
   def account
     @user = current_user
@@ -15,7 +14,7 @@ class PersonalActionsController < ApplicationController
     if @user.ipid == nil
       @user.generate_ipid
       flash[:success] = "Вы зарегистрированы как индивидуальный предприниматель."
-      redirect_to account_path  
+      redirect_to account_path
     end
   end
 
@@ -34,10 +33,5 @@ class PersonalActionsController < ApplicationController
         flash[:danger] = "Пожалуйста, авторизуйтесь."
         redirect_to login_path
       end
-    end
-
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
     end
 end

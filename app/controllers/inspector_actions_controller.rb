@@ -6,24 +6,22 @@ class InspectorActionsController < ApplicationController
     @user = current_user
   end
 
-  def users_list
-    @users = User.order(:surname).page params[:page]
-    render turbo_stream: turbo_stream.update('index', partial: 'users')
-  end
-
-  def estates_list
-    @estates = Estate.order(:address).page params[:page]
-    render turbo_stream: turbo_stream.update('index', partial: 'estates')
-  end
-
-  def vehicles_list
-    @vehicles = Vehicle.order(:state_number).page params[:page]
-    render turbo_stream: turbo_stream.update('index', partial: 'vehicles')
-  end
-
-  def organizations_list
-    @organizations = Organization.order(:name).page params[:page]
-    render turbo_stream: turbo_stream.update('index', partial: 'organizations')
+  def list
+    @user = current_user
+    case params[:field]
+    when 'users'
+      @users = User.order(:surname).page params[:page]
+      render turbo_stream: turbo_stream.update('index', partial: 'users')
+    when 'estates'
+      @estates = Estate.order(:cadastral_number).page params[:page]
+      render turbo_stream: turbo_stream.update('index', partial: 'estates')
+    when 'vehicles'
+      @vehicles = Vehicle.order(:model).page params[:page]
+      render turbo_stream: turbo_stream.update('index', partial: 'vehicles')
+    when 'organizations'
+      @organizations = Organization.order(:name).page params[:page]
+      render turbo_stream: turbo_stream.update('index', partial: 'organizations')
+    end
   end
 
   def show_user

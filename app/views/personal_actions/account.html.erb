@@ -1,8 +1,20 @@
 <%= @user.full_name %>
 <%= @user.inn %>
 <p>
+  <%= link_to "Уплата налогов", become_entrepreneur_path %>
+</p>
+<p>
+  <%= link_to "Наличие задолженности/переплаты", become_entrepreneur_path %>
+</p>
+<p>
+  <%= link_to "Подать декларацию", become_entrepreneur_path %>
+</p>
+<p>
+  <%= link_to "Открыть бизнес", become_entrepreneur_path %>
+</p>
+<p>
   <%= link_to "Стать предпринимателем", become_entrepreneur_path %>
 </p>
 <p>
-  <%= link_to "Информация об имуществе", become_entrepreneur_path %>
+  <%= link_to "Информация об имуществе", property_path %>
 </p>
