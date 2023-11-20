@@ -1,17 +1,7 @@
-<%= paginate @users %>
+<%= link_to "Пользователи", users_list_path %>
+<%= link_to "Недвижимость", estates_list_path %>
+<%= link_to "Транспортные средства", vehicles_list_path %>
 
 <div id="index">
-  <% @users.each do |user| %>
-    <div>
-      User
-      <p>
-        <%= link_to user.full_name, show_user_path(user.id) %>
-      </p>
-      <p>
-        <%= user.inn %>
-      </p>
-    </div>
-  <% end %>
-</div>
 
-<%= paginate @users %>
+</div>

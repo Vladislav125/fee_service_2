@@ -1,0 +1,20 @@
+<%= paginate @vehicles %>
+
+<div>
+  <% @vehicles.each do |vehicle| %>
+    <div>
+      <p>
+        <%= link_to vehicle.state_number, estate_path(vehicle.id) %>
+      </p>
+      <p>
+        <%= vehicle.model %>
+      </p>
+      <p>
+        <% user = User.find(vehicle.user_id) %>
+        <%= link_to user.full_name, show_user_path(user.id) %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<%= paginate @vehicles %>
