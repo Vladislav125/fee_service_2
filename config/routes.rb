@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get 'account' => 'personal_actions#account'
   get 'become_entrepreneur' => 'personal_actions#become_entrepreneur'
   patch 'confirm_status' => 'personal_actions#confirm_status'
+  get 'property' => 'personal_actions#property'
   get 'signup' => 'users#new'
   get 'show' => 'users#show'
   get 'login' => 'sessions#new'
