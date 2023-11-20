@@ -1,4 +1,7 @@
 class CommonActionsController < ApplicationController
+  def documents
+  end 
+
   def clear_business
   end
 

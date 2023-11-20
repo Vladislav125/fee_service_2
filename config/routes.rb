@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete '/delete_organization/:id', to: 'organizations#destroy', as: 'delete_organization'
   get 'clear_business' => 'common_actions#clear_business'
   get 'find_business' => 'common_actions#find_business'
+  get 'documents' => 'common_actions#documents'
   get '/new_vehicle/:id', to: 'vehicles#new', as: 'new_vehicle'
   post '/create_vehicle/:user_id', to: 'vehicles#create'
   get '/vehicle/:id', to: 'vehicles#show', as: 'vehicle'
