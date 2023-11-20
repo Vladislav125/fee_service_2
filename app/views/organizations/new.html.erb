@@ -1,0 +1,41 @@
+<h1>Регистрация организации</h1>
+
+<div id="errors"></div>
+
+<%= form_with(url: "/create_organization/#{@user_id}", method: :post, local: true) do |form| %>
+  <% if @organization.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+
+      <ul>
+        <% @organization.errors.each do |error| %>
+          <li><%= error.message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, "Наименование организации", style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :address, "Адрес организации", style: "display: block" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :income, "Доход организации", style: "display: block" %>
+    <%= form.text_field :income %>
+  </div>
+
+  <div>
+    <%= form.label :reg_date, "Дата регистрации", style: "display: block" %>
+    <%= form.date_field :reg_date %>
+  </div>
+
+  <div>
+    <%= form.submit "Продолжить", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,22 @@
+<h1><%= @organization.name %></h1>
+<h1><%= @organization.org_inn %></h1>
+<p>
+  <%= link_to "Добавить служебное транспортное средство", new_service_vehicle_path(@organization.id) %>
+</p>
+<p>
+  <%= link_to "Добавить служебную недвижимость", new_service_estate_path(@organization.id) %>
+</p>
+<p>
+  <%= link_to "Вернуться к пользователю", show_user_path(@user.id) %>
+</p>
+<p>
+  <% @service_vehicles.each do |service_vehicle| %>
+    <%= link_to "#{service_vehicle.model}, #{service_vehicle.state_number}", service_vehicle_path(service_vehicle.id) %>
+  <% end %>
+</p>
+<p>
+  <% @service_estates.each do |service_estate| %>
+    <%= link_to "#{service_estate.address}", service_estate_path(service_estate.id) %>
+  <% end %>
+</p>
+

@@ -1,5 +1,5 @@
 class MainPageController < ApplicationController
   def home
-    @users = User.all
+    @service_vehicles = ServiceVehicle.all
   end
 end

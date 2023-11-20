@@ -21,6 +21,11 @@ class InspectorActionsController < ApplicationController
     render turbo_stream: turbo_stream.update('index', partial: 'vehicles')
   end
 
+  def organizations_list
+    @organizations = Organization.order(:name).page params[:page]
+    render turbo_stream: turbo_stream.update('index', partial: 'organizations')
+  end
+
   def show_user
     @user = User.find(params[:id])
     @estates = Estate.where(user_id: @user.id)

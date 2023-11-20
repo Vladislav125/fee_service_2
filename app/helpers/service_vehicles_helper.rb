@@ -1,0 +1,2 @@
+module ServiceVehiclesHelper
+end

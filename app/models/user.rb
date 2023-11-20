@@ -99,7 +99,7 @@ class User < ApplicationRecord
         temp_inn = rand(1..9).to_s
         11.times { temp_inn += rand(0..9).to_s }
         if User.find_by(inn: temp_inn) == nil
-          self.update_column(:inn, temp_inn)
+          self.inn = temp_inn
           break
         end
       end
