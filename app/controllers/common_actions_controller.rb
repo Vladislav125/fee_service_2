@@ -2,6 +2,9 @@ class CommonActionsController < ApplicationController
   def documents
   end 
 
+  def declarations
+  end
+  
   def clear_business
   end
 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'clear_business' => 'common_actions#clear_business'
   get 'find_business' => 'common_actions#find_business'
   get 'documents' => 'common_actions#documents'
+  get 'declarations' => 'common_actions#declarations'
   get '/new_vehicle/:id', to: 'vehicles#new', as: 'new_vehicle'
   post '/create_vehicle/:user_id', to: 'vehicles#create'
   get '/vehicle/:id', to: 'vehicles#show', as: 'vehicle'
