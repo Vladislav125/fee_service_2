@@ -36,6 +36,7 @@ class User < ApplicationRecord
                                 message: "Поле Место жительства может содержать не более 100 символов." }
   VALID_INCOME_REGEX = /\A0|([1-9]\d*)\z/
   validates :income, format: { with: VALID_INCOME_REGEX, message: "Некорректно заполнено поле доход." }
+  VALID_IPID_REGEX = /\A(nil)|([1-9]\d{14})\z/
   has_secure_password
   validates :password, presence: { message: "Поле Пароль не может быть пустым." },
                        length: { minimum: 8, 
@@ -77,6 +78,19 @@ class User < ApplicationRecord
     full_name
   end
 
+  def generate_ipid
+    if ipid == nil
+      loop do
+        temp_ipid = rand(1..9).to_s
+        14.times { temp_ipid += rand(0..9).to_s }
+        if User.find_by(ipid: temp_ipid) == nil
+          self.update_column(:ipid, temp_ipid)
+          break
+        end
+      end 
+    end
+  end
+
   private
 
     # Присваивание ИНН
@@ -84,8 +98,10 @@ class User < ApplicationRecord
       loop do
         temp_inn = rand(1..9).to_s
         11.times { temp_inn += rand(0..9).to_s }
-        self.inn = temp_inn
-        break if valid?
+        if User.find_by(inn: temp_inn) == nil
+          self.update_column(:inn, temp_inn)
+          break
+        end
       end
     end
 end

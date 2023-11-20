@@ -13,14 +13,16 @@
     </div>
     <div class="col-6">
       <h1 class="center">Сервисы</h1>
-      <div class="row">
-        <a><%= link_to 'Уплата налогов и пошлин', root_path, class: "col h5 text-muted" %></a>
-        <a><%= link_to 'Справочная информация', root_path, class: "col h5 text-muted" %></a>
-      </div>
-      <div class="row">
-        <a><%= link_to 'Прозрачный бизнес', root_path, class: "col h5 text-muted" %></a>
-        <a><%= link_to 'Сведения об ИНН физического лица', root_path, class: "col h5 text-muted" %></a>
-      </div>
+      <section class="service_grid">
+        <div class="col-6">
+          <a><%= link_to 'Уплата налогов и пошлин', root_path, class: "grid-relement service_link h5 text-muted" %></a>
+          <a><%= link_to 'Справочная информация', root_path, class: "grid-relement service_link h5 text-muted" %></a>
+        </div>
+        <div class="col-6">
+          <a><%= link_to 'Прозрачный бизнес', clear_business_path, class: "grid-relement service_link h5 text-muted" %></a>
+          <a><%= link_to 'Сведения об ИНН физического лица', root_path, class: "grid-relement service_link h5 text-muted" %></a>
+        </div>
+      </section>
     </div>
   </div>
 </div>

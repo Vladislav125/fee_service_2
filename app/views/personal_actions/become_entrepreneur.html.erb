@@ -1,0 +1,12 @@
+<% if @user.ipid == nil %>
+  <h1>Стать предпринимателем</h1>
+
+  <%= form_with(url: "/confirm_status", method: :patch, local: true) do |form| %>
+    <div>
+      <%= form.submit "Получить идентификатор", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+<% else %>
+  <h2>Вы уже зарегистрированы как индивидуальный предприниматель.</h2>
+  <h2>Ваш ОГРНИП: <%= @user.ipid %></h2>
+<% end %>

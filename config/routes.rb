@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'clear_business' => 'common_actions#clear_business'
+  get 'find_business' => 'common_actions#find_business'
   get '/new_vehicle/:id', to: 'vehicles#new', as: 'new_vehicle'
   post '/create_vehicle/:user_id', to: 'vehicles#create', as: 'create_vehicle'
   get '/vehicle/:id', to: 'vehicles#show', as: 'vehicle'
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
   root 'main_page#home'
   get 'sessions/new'
   get 'account' => 'personal_actions#account'
+  get 'become_entrepreneur' => 'personal_actions#become_entrepreneur'
+  patch 'confirm_status' => 'personal_actions#confirm_status'
   get 'signup' => 'users#new'
   get 'show' => 'users#show'
   get 'login' => 'sessions#new'

@@ -26,6 +26,35 @@ body {
   font-size: 24px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+.service_block {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+}
+.service_link {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 50px;
+  margin: 20px;
+  border: solid 1px;
+  border-color: rgb(3, 3, 87);
+  background-color: aqua;
+  color: black;
+  font-size: 18px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.service_grid {
+  display: grid;
+  margin-top: 80px;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(2, 200px);
+  grid-template-rows: repeat(2, 20px);
+}
+
 .block_img {
   height: 60px;
 }

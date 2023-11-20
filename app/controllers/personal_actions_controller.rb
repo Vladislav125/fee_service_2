@@ -6,9 +6,16 @@ class PersonalActionsController < ApplicationController
   end
 
   def become_entrepreneur
+    @user = current_user
   end
 
   def confirm_status
+    @user = current_user
+    if @user.ipid == nil
+      @user.generate_ipid
+      flash[:success] = "Вы зарегистрированы как индивидуальный предприниматель."
+      redirect_to account_path  
+    end
   end
 
   private
