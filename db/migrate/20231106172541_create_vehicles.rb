@@ -4,7 +4,7 @@ class CreateVehicles < ActiveRecord::Migration[7.0]
       t.string :state_number
       t.string :model
       t.integer :power
-      t.string :type
+      t.string :vehicle_type
       t.date :reg_date
       t.belongs_to :user
 

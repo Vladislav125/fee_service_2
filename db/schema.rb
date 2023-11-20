@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_175821) do
     t.string "state_number"
     t.string "model"
     t.integer "power"
-    t.string "type"
+    t.string "vehicle_type"
     t.date "reg_date"
     t.integer "user_id"
     t.datetime "created_at", null: false

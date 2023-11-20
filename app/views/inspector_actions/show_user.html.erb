@@ -3,7 +3,14 @@
 <h3>Доход: <%= @user.income %></h3>
 <p><%= link_to "Добавить доход", edit_user_path(@user.id) %></p>
 <p><%= link_to "Добавить недвижимость", new_estate_path(@user.id) %></p>
-<p><%= link_to "Добавить транспортное средство", edit_user_path(@user.id) %></p>
-<% @estates.each do |estate| %>
-  <%= link_to estate.address, estate_path(estate.id) %>
-<% end %>
+<p><%= link_to "Добавить транспортное средство", new_vehicle_path(@user.id) %></p>
+<p>
+  <% @estates.each do |estate| %>
+    <%= link_to estate.address, estate_path(estate.id) %>
+  <% end %>
+</p>
+<p>
+  <% @vehicles.each do |vehicle| %>
+    <%= link_to "#{vehicle.model}, #{vehicle.state_number}", vehicle_path(vehicle.id) %>
+  <% end %>
+</p>

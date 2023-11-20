@@ -1,0 +1,49 @@
+<h1>Регистрация транспортного средства</h1>
+
+<div id="errors"></div>
+
+<%= form_with(url: "/create_vehicle/#{@user_id}", method: :post, local: true) do |form| %>
+  <% if @vehicle.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
+
+      <ul>
+        <% @vehicle.errors.each do |error| %>
+          <li><%= error.message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :state_number, "Государственный регистрационный номер", style: "display: block" %>
+    <%= form.text_field :state_number %>
+    <p>Формат: а000аа00 или а000аа000.</p>
+    <p>Номерной знак должен быть написан кириллицей.</p>
+  </div>
+
+  <div>
+    <%= form.label :model, "Модель транспортного средства", style: "display: block" %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div>
+    <%= form.label :power, "Мощность транспортного рсредства (л.с.)", style: "display: block" %>
+    <%= form.text_field :power %>
+  </div>
+
+  <div>
+    <%= form.label :vehicle_type, "Тип транспортного средства", style: "display: block" %>
+    <%= form.text_field :vehicle_type %>
+    <p>Допустимые типы транспортных средств: мопед, мотоцикл, квадрицикл, легковой автомобиль, автобус, грузовой автомобиль, прицеп.</p>
+  </div>
+
+  <div>
+    <%= form.label :reg_date, "Дата регистрации", style: "display: block" %>
+    <%= form.date_field :reg_date %>
+  </div>
+
+  <div>
+    <%= form.submit "Продолжить", class: "btn btn-primary" %>
+  </div>
+<% end %>
