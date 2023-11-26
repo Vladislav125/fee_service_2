@@ -6,7 +6,10 @@ class CreateServiceEstates < ActiveRecord::Migration[7.0]
       t.string :address, unique: true, null: false
       t.integer :cost, null: false
       t.string :estate_type, null: false
+      t.integer :tax, null: false, default: 0
+      t.boolean :tax_paid, default: false
       t.date :reg_date, null: false
+      
       t.belongs_to :organization
 
       t.timestamps

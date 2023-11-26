@@ -1,5 +1,6 @@
 class ServiceEstate < ApplicationRecord
   belongs_to :organization
+  before_create :set_tax
 
   VALID_CADASTRAL_NUMBER_REGEX = /\A(\d{2}:){2}\d{6}:\d{2}\z/
   validates :cadastral_number, presence: { message: "Поле Кадастровый номер не может быть пустым." },
@@ -20,4 +21,41 @@ class ServiceEstate < ApplicationRecord
                    format: { with: VALID_TYPE_REGEX, 
                              message: "Такого типа недвижимости не существует." }
   validates :reg_date, presence: { message: "Поле Дата регистрации не может быть пустым." }
+
+  private
+
+    def set_tax
+      temp_square = 0
+      tax_base = 0
+      if (self.estate_type == 'жилое помещение')
+        if (self.square > 20)
+          temp_square = self.square - 20
+        else
+          temp_square = 1
+        end
+        case self.cost
+          when (..10_000_000)
+            tax_base = self.cost * 0.001
+          when (10_000_001..20_000_000)
+            tax_base = self.cost * 0.0015
+          when (20_000_001..50_000_000)
+            tax_base = self.cost * 0.002
+          when (50_000_001..300_000_000)
+            tax_base = self.cost * 0.003
+          when (300_000_001..)
+            tax_base = self.cost * 0.02 
+        end
+      else
+        tax_base = self.cost * 0.005
+      end
+      tax_time = 0
+      current_year = Time.now.year
+      ownnership = current_year - reg_date.year
+      case ownnership
+        when (..0) then tax_time = 0
+        when 1 then tax_time = 12 - reg_date.month
+        when (2..) then tax_time = 12
+      end
+      self.tax = tax_base * tax_time
+    end
 end

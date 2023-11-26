@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_192548) do
     t.integer "cost", null: false
     t.string "estate_type", null: false
     t.date "reg_date", null: false
+    t.integer "tax", default: 0, null: false
+    t.boolean "tax_paid", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,6 +45,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_192548) do
     t.string "address", null: false
     t.integer "cost", null: false
     t.string "estate_type", null: false
+    t.integer "tax", default: 0, null: false
+    t.boolean "tax_paid", default: false
     t.date "reg_date", null: false
     t.integer "organization_id"
     t.datetime "created_at", null: false
@@ -56,6 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_192548) do
     t.integer "power", null: false
     t.string "vehicle_type", null: false
     t.date "reg_date", null: false
+    t.integer "tax", default: 0, null: false
+    t.boolean "tax_paid", default: false
     t.integer "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -88,7 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_192548) do
     t.string "vehicle_type", null: false
     t.date "reg_date", null: false
     t.integer "tax", default: 0, null: false
-    t.boolean "tax_paid", default: false, null: false
+    t.boolean "tax_paid", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

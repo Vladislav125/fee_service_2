@@ -60,8 +60,6 @@ class Vehicle < ApplicationRecord
           end
       end
       tax_time = 0
-      # current_year = 2023
-
       current_year = Time.now.year
       ownnership = current_year - reg_date.year
       case ownnership
