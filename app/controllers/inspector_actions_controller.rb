@@ -18,9 +18,6 @@ class InspectorActionsController < ApplicationController
       when 'vehicles'
         @vehicles = Vehicle.order(:model).page params[:page]
         render turbo_stream: turbo_stream.update('index', partial: 'vehicles')
-      when 'organizations'
-        @organizations = Organization.order(:name).page params[:page]
-        render turbo_stream: turbo_stream.update('index', partial: 'organizations')
     end
   end
 

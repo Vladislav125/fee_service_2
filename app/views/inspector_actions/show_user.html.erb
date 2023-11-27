@@ -4,7 +4,6 @@
 <p><%= link_to "Добавить доход", edit_user_path(@user.id) %></p>
 <p><%= link_to "Добавить недвижимость", new_estate_path(@user.id) %></p>
 <p><%= link_to "Добавить транспортное средство", new_vehicle_path(@user.id) %></p>
-<p><%= link_to "Добавить организацию", new_organization_path(@user.id) %></p>
 
 <p>
   <% @estates.each do |estate| %>

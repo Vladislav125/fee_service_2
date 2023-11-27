@@ -1,11 +1,16 @@
 class PersonalActionsController < ApplicationController
   before_action :logged_in_user, only: [:account, :become_entrepreneur, :confirm_status, :property]
+  before_action :physical_user, only: [:become_entrepreneur, :create_business]
 
   def account
     @user = current_user
   end
 
   def become_entrepreneur
+    @user = current_user
+  end
+
+  def create_business
     @user = current_user
   end
 
@@ -22,7 +27,6 @@ class PersonalActionsController < ApplicationController
     @user = current_user
     @vehicles = Vehicle.where(user_id: @user.id)
     @estates = Estate.where(user_id: @user.id)
-    @organizations = Organization.where(user_id: @user.id)
   end
 
   private
@@ -32,6 +36,12 @@ class PersonalActionsController < ApplicationController
         store_location
         flash[:danger] = "Пожалуйста, авторизуйтесь."
         redirect_to login_path
+      end
+    end
+
+    def physical_user
+      if current_user.organization?
+        redirect_to account_path
       end
     end
 end

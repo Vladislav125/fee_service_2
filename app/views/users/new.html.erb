@@ -1,3 +1,9 @@
 <h1>Регистрация</h1>
 
-<%= render "form", user: @user %>
+<div id="reg_form">
+  <% if @flag == 'user' %>
+    <%= render partial: "user_form" %>
+  <% else %>
+    <%= render partial: "organization_form" %>
+  <% end %>
+</div>

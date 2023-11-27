@@ -1,0 +1,6 @@
+<p><%= @result.inn %></p>
+<% if @result.organization? %>
+  <p><%= @result.kpp %></p>
+<% else %>  
+  <p><%= @result.ipid %></p>
+<p><%= @result.full_name %></p>

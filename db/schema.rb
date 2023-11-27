@@ -69,12 +69,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_192548) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "snils", null: false
+    t.string "snils"
     t.string "inn", null: false
+    t.string "kpp"
     t.string "ipid"
     t.string "password_digest"
-    t.string "passport", null: false
-    t.string "surname", null: false
+    t.string "passport"
+    t.string "surname"
     t.string "firstname", null: false
     t.string "middlename"
     t.date "born_date", null: false
@@ -82,9 +83,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_192548) do
     t.integer "income", default: 0, null: false
     t.boolean "admin", default: false
     t.boolean "inspector", default: false
+    t.boolean "organization", default: false
     t.string "remember_digest"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_users_on_user_id"
   end
 
   create_table "vehicles", force: :cascade do |t|

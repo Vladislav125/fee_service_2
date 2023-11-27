@@ -19,6 +19,8 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @owner = current_user
+    @flag = params[:field]
   end
 
   # GET /users/1/edit
@@ -28,11 +30,18 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
+    if (params[:user_id] == 0)
+      @user.organization = false
+      @user.user_id = nil
+    else
+      @user.organization = true
+      @user.user_id = params[:user_id]
+    end
     if @user.save
-      # UserMailer.account_activation(@user).deliver_now
       flash[:info] = "Учётная запись создана."
+      log_out
       log_in @user
-      redirect_to account_url
+      redirect_to account_path
     else
       render :new, status: :unprocessable_entity, content_type: "text/html"
     end
@@ -61,11 +70,11 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:snils, :password, :password_confirmation, :passport, :surname, :firstname, :middlename, :born_date, :address)
+      params.permit(:snils, :password, :password_confirmation, :passport, :surname, :firstname, :middlename, :born_date, :address, :user_id)
     end
 
     def user_params_for_edit
-      params.require(:user).permit(:passport, :surname, :firstname, :middlename, :born_date, :address, :income)
+      params.permit(:passport, :surname, :firstname, :middlename, :born_date, :address, :income)
     end
 
     # предварительные фильтры

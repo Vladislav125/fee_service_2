@@ -1,0 +1,44 @@
+<%= form_with(url: "/create_user/#{@owner.id}", method: :post, local: true) do |form| %>
+  <% if @user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= @owner.id %>
+
+  <div>
+    <%= form.label :firstname, "Наименование", style: "display: block" %>
+    <%= form.text_field :firstname %>
+  </div>
+
+  <div>
+    <%= form.label :password, "Пароль", style: "display: block" %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation, "Подтверждение пароля", style: "display: block" %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  
+  <div>
+    <%= form.label :born_date, "Дата регистрации", style: "display: block" %>
+    <%= form.date_field :born_date %>
+  </div>
+
+  <div>
+    <%= form.label :address, "Адрес регистрации", style: "display: block" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.submit "Продолжить", class: "btn btn-primary" %>
+  </div>
+<% end %>

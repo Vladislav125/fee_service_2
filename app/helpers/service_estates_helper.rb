@@ -1,2 +1,0 @@
-module ServiceEstatesHelper
-end
