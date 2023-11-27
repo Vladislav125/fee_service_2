@@ -16,6 +16,7 @@ class Vehicle < ApplicationRecord
                            format: { with: VALID_VEHICLE_TYPE_REGEX,
                                      message: "Такого типа транспортного средства не существует." }
   validates :reg_date, presence: { message: "Поле Дата регистрации не может быть пустым." }
+  validates_with VehicleValidationHelper
 
   private
 
