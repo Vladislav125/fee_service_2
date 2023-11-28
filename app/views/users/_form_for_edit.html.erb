@@ -1,10 +1,10 @@
-<%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
+<%= form_with(url: "/update/#{@user.id}", method: :patch, local: true) do |form| %>
+  <% if @user.errors.any? %>
     <div style="color: red">
       <h2>При редактировании пользователя возникои следующие ошибки:</h2>
 
       <ul>
-        <% user.errors.each do |error| %>
+        <% @user.errors.each do |error| %>
           <li><%= error.message %></li>
         <% end %>
       </ul>
@@ -13,37 +13,37 @@
 
   <div>
     <%= form.label :passport, "Паспорт", style: "display: block" %>
-    <%= form.text_field :passport %>
+    <%= form.text_field :passport, value: @user.passport %>
   </div>
   
   <div>
     <%= form.label :surname, "Фамилия", style: "display: block" %>
-    <%= form.text_field :surname %>
+    <%= form.text_field :surname, value: @user.surname %>
   </div>
 
   <div>
     <%= form.label :firstname, "Имя", style: "display: block" %>
-    <%= form.text_field :firstname %>
+    <%= form.text_field :firstname, value: @user.firstname %>
   </div>
 
   <div>
     <%= form.label :middlename, "Отчество", style: "display: block" %>
-    <%= form.text_field :middlename %>
+    <%= form.text_field :middlename, value: @user.middlename %>
   </div>
 
   <div>
     <%= form.label :born_date, "Дата рождения", style: "display: block" %>
-    <%= form.date_field :born_date %>
+    <%= form.date_field :born_date, value: @user.born_date %>
   </div>
 
   <div>
     <%= form.label :address, "Место жительства", style: "display: block" %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address, value: @user.address %>
   </div>
 
   <div>
     <%= form.label :income, "Доход", style: "display: block" %>
-    <%= form.text_field :income %>
+    <%= form.text_field :income, value: @user.income %>
   </div>
 
   <div>

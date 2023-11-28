@@ -41,7 +41,8 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  patch 'update' => 'users#update'
+  get '/edit/:id', to: 'users#edit', as: 'edit'
+  patch '/update/:id', to: 'users#update', as: 'update'
 
   resources :users
 

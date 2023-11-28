@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :inspector_or_admin_user, only: [:index, :show, :edit, :update]
 
@@ -25,6 +24,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
   end
 
   # POST /users or /users.json
@@ -49,9 +49,10 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
+    @user = User.find(params[:id])
     if @user.update(user_params_for_edit)
       flash[:success] = "Данные профиля обновлены."
-      redirect_to @user
+      redirect_to show_user_path(@user.id)
     else
       render :edit, status: :unprocessable_entity, content_type: "text/html"
     end
