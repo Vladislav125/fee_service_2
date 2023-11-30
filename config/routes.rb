@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  get '/auth_choice/:field' => 'sessions#auth_choice', as: 'auth_choice'
   get '/edit/:id', to: 'users#edit', as: 'edit'
   patch '/update/:id', to: 'users#update', as: 'update'
   delete 'delete_user/:id', to: 'users#destroy', as: 'delete_user'
