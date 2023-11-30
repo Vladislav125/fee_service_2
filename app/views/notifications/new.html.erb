@@ -1,0 +1,26 @@
+<h1>Отправка уведомления пользователю</h1>
+
+<div id="errors"></div>
+
+<%= form_with(url: "/create_notification/#{@user.id}/#{@receiver.id}", method: :post, local: true) do |form| %>
+  <% if @notification.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@notification.errors.count, "error") %> prohibited this notification from being saved:</h2>
+
+      <ul>
+        <% @notification.errors.each do |error| %>
+          <li><%= error.message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :text_field, "Текст уведомления", style: "display: block" %>
+    <%= form.text_area :text_field, size: "70x5" %>
+  </div>
+
+  <div>
+    <%= form.submit "Отправить", class: "btn btn-primary" %>
+  </div>
+<% end %>

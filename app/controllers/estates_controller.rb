@@ -1,5 +1,5 @@
 class EstatesController < ApplicationController
-  before_action :inspector_or_admin_user, only: [:new, :create, :destroy, :edit]
+  before_action :inspector_or_admin_user, only: [:new, :create, :destroy, :edit, :update]
 
   def new
     @user_id = params[:id]

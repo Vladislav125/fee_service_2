@@ -5,6 +5,7 @@
 <p><%= link_to "Добавить доход", edit_user_path(@user.id) %></p>
 <p><%= link_to "Добавить недвижимость", new_estate_path(@user.id) %></p>
 <p><%= link_to "Добавить транспортное средство", new_vehicle_path(@user.id) %></p>
+<p><%= link_to "Отправить уведомление", new_notification_path(@inspector.id, @user.id) %></p>
 
 <p>
   <% @estates.each do |estate| %>
@@ -14,5 +15,11 @@
 <p>
   <% @vehicles.each do |vehicle| %>
     <%= link_to "#{vehicle.model}, #{vehicle.state_number}", vehicle_path(vehicle.id) %>
+  <% end %>
+</p>
+<p>
+  <% @notifications.each do |notification| %>
+    <%= notification.created_at %>
+    <%= link_to "#{notification.preview}", notification_path(notification.id) %>
   <% end %>
 </p>
