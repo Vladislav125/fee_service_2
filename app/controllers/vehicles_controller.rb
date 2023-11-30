@@ -24,6 +24,17 @@ class VehiclesController < ApplicationController
   end
 
   def edit
+    @vehicle = Vehicle.find(params[:id])
+  end
+
+  def update
+    @vehicle = Vehicle.find(params[:id])
+    if @vehicle.update(vehicle_params)
+      flash[:success] = "Данные о транспортном средстве обновлены."
+      redirect_to vehicle_path(@vehicle.id)
+    else
+      render :edit, status: :unprocessable_entity, content_type: "text/html"
+    end
   end
 
   def show
@@ -34,7 +45,7 @@ class VehiclesController < ApplicationController
   private
 
     def vehicle_params
-      params.permit(:user_id, :state_number, :model, :power, :vehicle_type, :reg_date)
+      params.permit(:user_id, :vin, :state_number, :model, :power, :vehicle_type, :reg_date)
     end
 
     def inspector_or_admin_user

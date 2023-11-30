@@ -2,6 +2,10 @@ class Vehicle < ApplicationRecord
   belongs_to :user
   before_create :set_tax
 
+  VALID_VIN_REGEX = /\A[1-9]\d{16}\z/
+  validates :vin, presence: { message: "Поле Уникальный идентификатор транспортного соедства не может быть пустым." },
+                  uniqueness: { message: "Это транспортное средство уже зарегистрировано." },
+                  format: { with: VALID_VIN_REGEX, message: "Поле Уникальный идентификатор транспортного соедства заполнено некорректно." }
   VALID_STATE_NUMBER_REGEX = /\A[авенкморстух]\d{3}[авенкморстух]{2}(\d{2}|\d{3})\z/
   validates :state_number, presence: { message: "Поле Государственный регистрационный номер не может быть пустым." },
                            uniqueness: { message: "Транспортное средство с таким номерным знаком уже зарегистрировано." },

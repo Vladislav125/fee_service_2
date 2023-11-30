@@ -17,13 +17,24 @@ class EstatesController < ApplicationController
     end
   end
 
+  def edit
+    @estate = Estate.find(params[:id])
+  end
+
+  def update
+    @estate = Estate.find(params[:id])
+    if @estate.update(estate_params)
+      flash[:success] = "Данные о недвижимости обновлены."
+      redirect_to estate_path(@estate.id)
+    else
+      render :edit, status: :unprocessable_entity, content_type: "text/html"
+    end
+  end
+
   def destroy
     Estate.find(params[:id]).destroy
     flash[:success] = "Информация о недвижимости удалена."
     redirect_to index_path
-  end
-
-  def edit
   end
 
   def show

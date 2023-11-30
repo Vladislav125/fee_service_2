@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_20_192548) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_13_175821) do
   create_table "estates", force: :cascade do |t|
     t.string "cadastral_number", null: false
     t.integer "square", null: false
@@ -24,48 +24,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_192548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_estates_on_user_id"
-  end
-
-  create_table "organizations", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "org_inn", null: false
-    t.string "org_kpp", null: false
-    t.string "address", null: false
-    t.integer "income", null: false
-    t.date "reg_date", null: false
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_organizations_on_user_id"
-  end
-
-  create_table "service_estates", force: :cascade do |t|
-    t.string "cadastral_number", null: false
-    t.integer "square", null: false
-    t.string "address", null: false
-    t.integer "cost", null: false
-    t.string "estate_type", null: false
-    t.integer "tax", default: 0, null: false
-    t.boolean "tax_paid", default: false
-    t.date "reg_date", null: false
-    t.integer "organization_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_service_estates_on_organization_id"
-  end
-
-  create_table "service_vehicles", force: :cascade do |t|
-    t.string "state_number", null: false
-    t.string "model", null: false
-    t.integer "power", null: false
-    t.string "vehicle_type", null: false
-    t.date "reg_date", null: false
-    t.integer "tax", default: 0, null: false
-    t.boolean "tax_paid", default: false
-    t.integer "organization_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_service_vehicles_on_organization_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -92,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_20_192548) do
   end
 
   create_table "vehicles", force: :cascade do |t|
+    t.string "vin", null: false
     t.string "state_number", null: false
     t.string "model", null: false
     t.integer "power", null: false

@@ -1,8 +1,8 @@
-<h1>Регистрация транспортного средства</h1>
+<h1>Редактирование информации о транспортном средстве</h1>
 
 <div id="errors"></div>
 
-<%= form_with(url: "/create_vehicle/#{@user_id}", method: :post, local: true) do |form| %>
+<%= form_with(url: "/update_vehicle/#{@vehicle.id}", method: :patch, local: true) do |form| %>
   <% if @vehicle.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
@@ -17,35 +17,35 @@
 
   <div>
     <%= form.label :vin, "Уникальный идентификатор транспортного средства", style: "display: block" %>
-    <%= form.text_field :vin %>
+    <%= form.text_field :vin, value: @vehicle.vin %>
   </div>
 
   <div>
     <%= form.label :state_number, "Государственный регистрационный номер", style: "display: block" %>
-    <%= form.text_field :state_number %>
+    <%= form.text_field :state_number, value: @vehicle.state_number %>
     <p>Формат: а000аа00 или а000аа000.</p>
     <p>Номерной знак должен быть написан кириллицей.</p>
   </div>
 
   <div>
     <%= form.label :model, "Модель транспортного средства", style: "display: block" %>
-    <%= form.text_field :model %>
+    <%= form.text_field :model, value: @vehicle.model %>
   </div>
 
   <div>
     <%= form.label :power, "Мощность транспортного рсредства (л.с.)", style: "display: block" %>
-    <%= form.text_field :power %>
+    <%= form.text_field :power, value: @vehicle.power %>
   </div>
 
   <div>
     <%= form.label :vehicle_type, "Тип транспортного средства", style: "display: block" %>
-    <%= form.text_field :vehicle_type %>
+    <%= form.text_field :vehicle_type, value: @vehicle.vehicle_type %>
     <p>Допустимые типы транспортных средств: мотоцикл, квадрицикл, легковой автомобиль, автобус, грузовой автомобиль.</p>
   </div>
 
   <div>
     <%= form.label :reg_date, "Дата регистрации", style: "display: block" %>
-    <%= form.date_field :reg_date %>
+    <%= form.date_field :reg_date, value: @vehicle.reg_date %>
   </div>
 
   <div>
