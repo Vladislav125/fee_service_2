@@ -4,5 +4,6 @@
 
 <p><%= link_to "Вернуться к пользователю", show_user_path(@notification.receiver) %></p>
 
-
-
+<% if current_user.admin? %>
+  <%= button_to "Удалить уведомление", delete_notification_path(@notification.id), method: :delete %>
+<% end %>

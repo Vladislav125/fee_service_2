@@ -6,3 +6,6 @@
 
 <p><%= link_to "Вернуться к пользователю", show_user_path(@user.id) %></p>
 
+<% if current_user.admin? %>
+  <%= button_to "Удалить недвижимость", delete_estate_path(@estate.id), method: :delete %>
+<% end %>

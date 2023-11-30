@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get '/edit/:id', to: 'users#edit', as: 'edit'
   patch '/update/:id', to: 'users#update', as: 'update'
+  delete 'delete_user/:id', to: 'users#destroy', as: 'delete_user'
 
   resources :users
 
