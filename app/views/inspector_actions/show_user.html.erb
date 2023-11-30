@@ -1,6 +1,9 @@
 <h2><%= @user.full_name %></h2>
 <h3>ИНН: <%= @user.inn %></h3>
 <h3>Доход: <%= @user.income %></h3>
+<% unless @user.user_id == nil %>
+  <p>Руководитель: <%= link_to @owner.full_name, show_user_path(@owner.id) %></p>
+<% end %>
 <p><%= link_to "Редактировать", edit_path(@user.id) %></p>
 <p><%= link_to "Добавить доход", edit_user_path(@user.id) %></p>
 <p><%= link_to "Добавить недвижимость", new_estate_path(@user.id) %></p>
@@ -17,6 +20,13 @@
     <%= link_to "#{vehicle.model}, #{vehicle.state_number}", vehicle_path(vehicle.id) %>
   <% end %>
 </p>
+<% unless @organizations == nil %>
+  <p>
+    <% @organizations.each do |organization| %>
+      <%= link_to "#{organization.full_name}", show_user_path(organization.id) %>
+    <% end %>
+  </p>
+<% end %>
 <p>
   <% @notifications.each do |notification| %>
     <%= notification.created_at %>

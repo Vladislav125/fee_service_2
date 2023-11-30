@@ -24,9 +24,14 @@ class InspectorActionsController < ApplicationController
   def show_user
     @inspector = current_user
     @user = User.find(params[:id])
+    unless @user.user_id == nil
+      @owner = User.find(@user.user_id)
+    end
     @estates = Estate.where(user_id: @user.id)
     @vehicles = Vehicle.where(user_id: @user.id)
     @notifications = Notification.where(receiver: @user.id)
+    @organizations = User.where(user_id: @user.id)
+
   end
 
   def edit_user

@@ -140,7 +140,7 @@ class User < ApplicationRecord
         loop do
           temp_org_kpp = rand(1..9).to_s
           8.times { temp_org_kpp += rand(0..9).to_s }
-          if Organization.find_by(org_kpp: temp_org_kpp) == nil
+          if User.find_by(kpp: temp_org_kpp) == nil
             self.kpp = temp_org_kpp
             break
           end
