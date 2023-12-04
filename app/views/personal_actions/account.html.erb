@@ -2,7 +2,12 @@
 <%= @user.inn %>
 <p><%= link_to "Уплата налогов", become_entrepreneur_path %></p>
 <p><%= link_to "Наличие задолженности/переплаты", become_entrepreneur_path %></p>
-<p><%= link_to "Подать декларацию", become_entrepreneur_path %></p>
+<p><%= link_to "Подать декларацию", send_files_path %></p>
+<% if @user.files.attached? %>
+  <% @files.each do |file| %>
+    <%= link_to(file.blob.filename, file) %>
+  <% end %>
+<% end %>
 <% unless @user.organization? %>
   <p><%= link_to "Открыть бизнес", create_business_path %></p>
   <p><%= link_to "Стать предпринимателем", become_entrepreneur_path %></p>

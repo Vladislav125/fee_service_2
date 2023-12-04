@@ -64,6 +64,7 @@ class User < ApplicationRecord
   validates_with UserValidator
 
   has_secure_password
+  has_many_attached :files
 
   paginates_per 10
 

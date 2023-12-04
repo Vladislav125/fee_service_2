@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   get 'become_entrepreneur' => 'personal_actions#become_entrepreneur'
   get 'create_business' => 'personal_actions#create_business'
   patch 'confirm_status' => 'personal_actions#confirm_status'
+  get 'send_files' => 'personal_actions#send_files'
+  post 'attach_files' => 'personal_actions#attach_files'
   get 'property' => 'personal_actions#property'
   get '/signup/:field', to: 'users#new', as: 'signup'
   post '/create_user/:user_id', to: 'users#create', as: 'create_user'

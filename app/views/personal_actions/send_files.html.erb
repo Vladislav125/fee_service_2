@@ -1,0 +1,11 @@
+<%= form_with(url: attach_files_path, method: :post, local: true) do |form| %>
+  
+  <div>
+    <%= form.label :files, "Загрузить файлы", style: "display: block" %>
+    <%= form.file_field :files, multiple: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Отправить", class: "btn btn-primary" %>
+  </div>
+<% end %>

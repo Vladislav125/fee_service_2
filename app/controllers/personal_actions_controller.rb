@@ -4,6 +4,7 @@ class PersonalActionsController < ApplicationController
 
   def account
     @user = current_user
+    @files = @user.files
   end
 
   def become_entrepreneur
@@ -27,6 +28,16 @@ class PersonalActionsController < ApplicationController
     @user = current_user
     @vehicles = Vehicle.where(user_id: @user.id)
     @estates = Estate.where(user_id: @user.id)
+  end
+
+  def send_files
+  end
+
+  def attach_files
+    @user = current_user
+    @user.files.attach(params[:files])
+    flash[:info] = "Файлы загружены."
+    redirect_to account_path
   end
 
   private
