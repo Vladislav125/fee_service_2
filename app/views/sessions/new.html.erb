@@ -1,7 +1,7 @@
 <%= provide(:title, "Log in") %>
 <h1>Вход</h1>
-<%= link_to "По ИНН", list_path('inn') %>
-<%= link_to "По паспорту", list_path('passport') %>
+<%= link_to "По ИНН", auth_choice_path('inn') %>
+<%= link_to "По паспорту", auth_choice_path('passport') %>
 
 <div id="authorization">
   <%= render partial: 'form_with_inn' %>

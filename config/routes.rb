@@ -35,12 +35,12 @@ Rails.application.routes.draw do
   post '/create_user/:user_id', to: 'users#create', as: 'create_user'
   get 'show' => 'users#show'
   get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
+  post '/create_session/:field', to: 'sessions#create', as: 'create_session'
   delete 'logout' => 'sessions#destroy'
   get '/auth_choice/:field' => 'sessions#auth_choice', as: 'auth_choice'
   get '/edit/:id', to: 'users#edit', as: 'edit'
   patch '/update/:id', to: 'users#update', as: 'update'
-  delete 'delete_user/:id', to: 'users#destroy', as: 'delete_user'
+  delete '/delete_user/:id', to: 'users#destroy', as: 'delete_user'
 
   resources :users
 

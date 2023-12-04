@@ -3,7 +3,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(passport: params[:session][:passport])
+    if params[:field] == 'passport'
+      user = User.find_by(passport: params[:session][:passport])
+    else
+      user = User.find_by(inn: params[:session][:inn])
+    end
     if user && user.authenticate(params[:session][:password])
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
