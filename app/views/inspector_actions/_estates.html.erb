@@ -1,3 +1,5 @@
+<p><%= link_to "Добавить новую недвижимость", new_estate_path %></p>
+
 <%= paginate @estates %>
 
 <div>
@@ -8,10 +10,6 @@
       </p>
       <p>
         <%= estate.cadastral_number %>
-      </p>
-      <p>
-        <% user = User.find(estate.user_id) %>
-        <%= link_to user.full_name, show_user_path(user.id) %>
       </p>
     </div>
   <% end %>

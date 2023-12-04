@@ -2,7 +2,6 @@ class VehiclesController < ApplicationController
   before_action :inspector_or_admin_user, only: [:new, :create, :destroy, :edit, :update]
 
   def new
-    @user_id = params[:id]
     @vehicle = Vehicle.new
   end
 
@@ -39,13 +38,12 @@ class VehiclesController < ApplicationController
 
   def show
     @vehicle = Vehicle.find(params[:id])
-    @user = User.find(@vehicle.user_id)
   end
 
   private
 
     def vehicle_params
-      params.permit(:user_id, :vin, :state_number, :model, :power, :vehicle_type, :reg_date)
+      params.permit(:vin, :state_number, :model, :power, :vehicle_type)
     end
 
     def inspector_or_admin_user

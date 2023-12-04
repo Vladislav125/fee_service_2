@@ -2,7 +2,7 @@
 
 <div id="errors"></div>
 
-<%= form_with(url: "/create_estate/#{@user_id}", method: :post, local: true) do |form| %>
+<%= form_with(url: create_estate_path, method: :post, local: true) do |form| %>
   <% if @estate.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@estate.errors.count, "error") %> prohibited this estate from being saved:</h2>
@@ -39,11 +39,6 @@
     <%= form.label :estate_type, "Тип недвижимости", style: "display: block" %>
     <%= form.text_field :estate_type %>
     <p>Допустимые типы недвижимости: земля, жилое помещение, нежилое помещение.</p>
-  </div>
-
-  <div>
-    <%= form.label :reg_date, "Дата регистрации", style: "display: block" %>
-    <%= form.date_field :reg_date %>
   </div>
 
   <div>

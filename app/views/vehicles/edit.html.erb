@@ -42,12 +42,7 @@
     <%= form.text_field :vehicle_type, value: @vehicle.vehicle_type %>
     <p>Допустимые типы транспортных средств: мотоцикл, квадрицикл, легковой автомобиль, автобус, грузовой автомобиль.</p>
   </div>
-
-  <div>
-    <%= form.label :reg_date, "Дата регистрации", style: "display: block" %>
-    <%= form.date_field :reg_date, value: @vehicle.reg_date %>
-  </div>
-
+  
   <div>
     <%= form.submit "Продолжить", class: "btn btn-primary" %>
   </div>

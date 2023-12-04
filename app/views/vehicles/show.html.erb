@@ -4,9 +4,6 @@
 
 <p><%= link_to "Редактировать", edit_vehicle_path(@vehicle.id) %></p>
 
-
-<p><%= link_to "Вернуться к пользователю", show_user_path(@user.id) %></p>
-
 <% if current_user.admin? %>
   <%= button_to "Удалить транспортное средство", delete_vehicle_path(@vehicle.id), method: :delete %>
 <% end %>

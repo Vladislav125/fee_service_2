@@ -6,23 +6,11 @@
 <% end %>
 <p><%= link_to "Редактировать", edit_path(@user.id) %></p>
 <p><%= link_to "Добавить доход", edit_user_path(@user.id) %></p>
-<p><%= link_to "Добавить недвижимость", new_estate_path(@user.id) %></p>
-<p><%= link_to "Добавить транспортное средство", new_vehicle_path(@user.id) %></p>
 <p><%= link_to "Отправить уведомление", new_notification_path(@inspector.id, @user.id) %></p>
 
 <% if current_user.admin? %>
   <%= button_to "Удалить пользователя", delete_user_path(@user.id), method: :delete %>
 <% end %>
-<p>
-  <% @estates.each do |estate| %>
-    <%= link_to estate.address, estate_path(estate.id) %>
-  <% end %>
-</p>
-<p>
-  <% @vehicles.each do |vehicle| %>
-    <%= link_to "#{vehicle.model}, #{vehicle.state_number}", vehicle_path(vehicle.id) %>
-  <% end %>
-</p>
 <% unless @organizations == nil %>
   <p>
     <% @organizations.each do |organization| %>

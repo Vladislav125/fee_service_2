@@ -1,5 +1,4 @@
 class Estate < ApplicationRecord
-  belongs_to :user
   before_create :set_tax
 
   VALID_CADASTRAL_NUMBER_REGEX = /\A(\d{2}:){2}\d{6}:\d{2}\z/
@@ -20,7 +19,6 @@ class Estate < ApplicationRecord
   validates :estate_type, presence: { message: "Поле Тип недвижимости не может быть пустым." },
                    format: { with: VALID_TYPE_REGEX, 
                              message: "Такого типа недвижимости не существует." }
-  validates :reg_date, presence: { message: "Поле Дата регистрации не может быть пустым." }
 
   private
 
@@ -48,14 +46,14 @@ class Estate < ApplicationRecord
       else
         tax_base = self.cost * 0.005
       end
-      tax_time = 0
-      current_year = Time.now.year
-      ownnership = current_year - reg_date.year
-      case ownnership
-        when (..0) then tax_time = 0
-        when 1 then tax_time = 12 - reg_date.month
-        when (2..) then tax_time = 12
-      end
-      self.tax = tax_base * tax_time
+      # tax_time = 0
+      # current_year = Time.now.year
+      # ownnership = current_year - reg_date.year
+      # case ownnership
+      #   when (..0) then tax_time = 0
+      #   when 1 then tax_time = 12 - reg_date.month
+      #   when (2..) then tax_time = 12
+      # end
+      self.tax = tax_base
     end
 end

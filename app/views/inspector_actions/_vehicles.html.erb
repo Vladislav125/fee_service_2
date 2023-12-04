@@ -1,3 +1,5 @@
+<p><%= link_to "Добавить новое транспортное средство", new_vehicle_path %></p>
+
 <%= paginate @vehicles %>
 
 <div>
@@ -8,10 +10,6 @@
       </p>
       <p>
         <%= vehicle.model %>
-      </p>
-      <p>
-        <% user = User.find(vehicle.user_id) %>
-        <%= link_to user.full_name, show_user_path(user.id) %>
       </p>
     </div>
   <% end %>

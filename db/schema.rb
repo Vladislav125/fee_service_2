@@ -10,20 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_30_001239) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_04_174822) do
   create_table "estates", force: :cascade do |t|
     t.string "cadastral_number", null: false
     t.integer "square", null: false
     t.string "address", null: false
     t.integer "cost", null: false
     t.string "estate_type", null: false
-    t.date "reg_date", null: false
     t.integer "tax", default: 0, null: false
-    t.boolean "tax_paid", default: false
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_estates_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -34,6 +30,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_001239) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "ownerships", force: :cascade do |t|
+    t.date "reg_date", null: false
+    t.date "end_date"
+    t.integer "tax_sum", default: 0
+    t.boolean "paid", default: false
+    t.integer "user_id", null: false
+    t.integer "vehicle_id"
+    t.integer "estate_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,13 +73,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_001239) do
     t.string "model", null: false
     t.integer "power", null: false
     t.string "vehicle_type", null: false
-    t.date "reg_date", null: false
     t.integer "tax", default: 0, null: false
-    t.boolean "tax_paid", default: false
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
 end

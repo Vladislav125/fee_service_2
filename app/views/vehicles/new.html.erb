@@ -2,7 +2,7 @@
 
 <div id="errors"></div>
 
-<%= form_with(url: "/create_vehicle/#{@user_id}", method: :post, local: true) do |form| %>
+<%= form_with(url: create_vehicle_path, method: :post, local: true) do |form| %>
   <% if @vehicle.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
@@ -41,11 +41,6 @@
     <%= form.label :vehicle_type, "Тип транспортного средства", style: "display: block" %>
     <%= form.text_field :vehicle_type %>
     <p>Допустимые типы транспортных средств: мотоцикл, квадрицикл, легковой автомобиль, автобус, грузовой автомобиль.</p>
-  </div>
-
-  <div>
-    <%= form.label :reg_date, "Дата регистрации", style: "display: block" %>
-    <%= form.date_field :reg_date %>
   </div>
 
   <div>

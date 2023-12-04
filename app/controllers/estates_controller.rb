@@ -2,7 +2,6 @@ class EstatesController < ApplicationController
   before_action :inspector_or_admin_user, only: [:new, :create, :destroy, :edit, :update]
 
   def new
-    @user_id = params[:id]
     @estate = Estate.new
   end
 
@@ -39,13 +38,12 @@ class EstatesController < ApplicationController
 
   def show
     @estate = Estate.find(params[:id])
-    @user = User.find(@estate.user_id)
   end
 
   private
 
     def estate_params
-      params.permit(:user_id, :cadastral_number, :square, :cost, :estate_type, :reg_date, :address)
+      params.permit(:cadastral_number, :square, :cost, :estate_type, :address)
     end
 
     def inspector_or_admin_user
