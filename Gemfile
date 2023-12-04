@@ -8,6 +8,7 @@ gem 'bootstrap-sass'
 gem "rails", "~> 7.0.8"
 gem 'bcrypt'
 gem 'kaminari', '~> 1.2.1'
+gem 'actionpack-page_caching'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

@@ -1,7 +1,9 @@
 class CommonActionsController < ApplicationController
+  caches_page :documents, :clear_business
+
   def documents
   end 
-
+  
   def declarations
   end
   

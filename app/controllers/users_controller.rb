@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  caches_page :new
+
   before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :admin_user, only: :destroy
   before_action :inspector_or_admin_user, only: [:index, :show, :edit, :update]
