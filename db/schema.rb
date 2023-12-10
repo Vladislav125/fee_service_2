@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_184256) do
 
   create_table "ownerships", force: :cascade do |t|
     t.date "reg_date", null: false
-    t.date "end_date"
+    t.date "end_date", null: false
     t.integer "tax_sum", default: 0
     t.boolean "paid", default: false
     t.integer "user_id", null: false
