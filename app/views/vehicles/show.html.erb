@@ -3,6 +3,7 @@
 <h1><%= @vehicle.tax %></h1>
 
 <p><%= link_to "Редактировать", edit_vehicle_path(@vehicle.id) %></p>
+<p><%= link_to "Добавить период владения", new_ownership_path("vehicle", @vehicle.id) %></p>
 
 <% if current_user.admin? %>
   <%= button_to "Удалить транспортное средство", delete_vehicle_path(@vehicle.id), method: :delete %>

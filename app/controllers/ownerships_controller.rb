@@ -3,16 +3,44 @@ class OwnershipsController < ApplicationController
 
   def new
     @ownership =  Ownership.new
+    if params[:object_type] == "vehicle"
+      @object = Vehicle.find(params[:object_id])
+      @type = "vehicle"
+    else
+      @object = Estate.find(params[:object_id])
+      @type = "estate"
+    end
   end
 
   def create
-    @ownership = Ownership.new(ownership_params)
-    if @ownership.save
-      flash[:info] = "Информация о периоде владения дрбавлена."
-      redirect_to vehicle_path(@vehicle.id)
+    inn = params[:inn]
+    if !inn.match?(/\A(\d{10})|(\d{12})\z/)
+      flash[:danger] = "Поле ИНН заполнено некорректно."
+      redirect_to create_ownership_path(params[:object_type], params[:object_id])
+    elsif User.find_by(inn: inn) == nil
+      flash[:danger] = "Нет пользователя с таким ИНН."
+      redirect_to create_ownership_path(params[:object_type], params[:object_id])
     else
-      @errors = @ownership.errors.map(&:message)
-      render turbo_stream: turbo_stream.update('errors', partial: 'errors')
+      @ownership = Ownership.new(ownership_params)
+      @ownership.user_id = User.find_by(inn: inn).id
+      if params[:object_type] == "vehicle"
+        @ownership.vehicle_id = params[:object_id]
+        @ownership.estate_id = nil
+      else
+        @ownership.estate_id = params[:object_id]
+        @ownership.vehicle_id = nil
+      end
+      if @ownership.save
+        flash[:info] = "Информация о периоде владения дрбавлена."
+        if params[:object_type] == "vehicle"
+          redirect_to vehicle_path(@ownership.vehicle_id)
+        else
+          redirect_to estate_path(@ownership.estate_id)
+        end
+      else
+        @errors = @ownership.errors.map(&:message)
+        render turbo_stream: turbo_stream.update('errors', partial: 'errors')
+      end
     end
   end
 

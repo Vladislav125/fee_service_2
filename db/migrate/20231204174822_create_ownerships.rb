@@ -6,8 +6,8 @@ class CreateOwnerships < ActiveRecord::Migration[7.0]
       t.integer :tax_sum, default: 0
       t.boolean :paid, default: false
       t.integer :user_id, null: false
-      t.integer :vehicle_id
-      t.integer :estate_id
+      t.integer :vehicle_id, null: true
+      t.integer :estate_id, null: true
 
       t.timestamps
     end

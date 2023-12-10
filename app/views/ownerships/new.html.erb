@@ -1,0 +1,36 @@
+<h1>Добавление информации о периоде владении</h1>
+
+<div id="errors"></div>
+
+<%= form_with(url: "/create_ownership/#{@type}/#{@object.id}", method: :post, local: true) do |form| %>
+  <% if @ownership.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@ownership.errors.count, "error") %> prohibited this ownership from being saved:</h2>
+
+      <ul>
+        <% @ownership.errors.each do |error| %>
+          <li><%= error.message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :inn, "ИНН владельца", style: "display: block" %>
+    <%= form.text_field :inn %>
+  </div>
+
+  <div>
+    <%= form.label :reg_date, "Дата начала периода владения", style: "display: block" %>
+    <%= form.date_field :reg_date, value: Date.parse("#{Time.now.year-1}-01-01") %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, "Дата окончания периода владения", style: "display: block" %>
+    <%= form.date_field :end_date, value: Date.parse("#{Time.now.year-1}-12-31") %>
+  </div>
+
+  <div>
+    <%= form.submit "Продолжить", class: "btn btn-primary" %>
+  </div>
+<% end %>
