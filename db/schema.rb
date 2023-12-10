@@ -85,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_184256) do
     t.date "born_date", null: false
     t.string "address", null: false
     t.integer "income", default: 0, null: false
+    t.integer "balance", default: 0, null: false
     t.boolean "admin", default: false
     t.boolean "inspector", default: false
     t.boolean "organization", default: false

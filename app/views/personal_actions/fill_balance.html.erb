@@ -1,0 +1,12 @@
+<h1>Пополнить баланс</h1>
+
+<p>Текущий баланс: <%= @user.balance %> руб.</p>
+
+<%= form_with(url: update_balance_path, method: :patch, local: true) do |form| %>
+  <div>
+    <%= form.label :balance, "Сумма пополнения" %>
+    <%= form.text_field :balance, class: "form-control" %>
+
+    <%= form.submit "Пополнить", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -5,6 +5,7 @@ class UserValidator < ActiveModel::Validator
   @VALID_SURNAME_REGEX = /\A[А-Я][а-я]*(-[А-Я][а-я]*)*\z/
   @VALID_FIRSTNAME_REGEX = /\A[А-Я][а-я]*\z/
   @VALID_MIDDLENAME_REGEX = /\A([А-Я][а-я]*)*\z/
+  @VALID_BALANCE_REGEX = /\A0|([1-9]\d*)\z/
 
   def validate(user)
     ApplicationRecord.validates :inn, uniqueness: true
@@ -15,7 +16,8 @@ class UserValidator < ActiveModel::Validator
                                  too_short: "Минимальная длина пароля: 8 символов.", 
                                  too_long: "Максимальная длина пароля: 100." }
     ApplicationRecord.validates :password_confirmation, presence: { message: "Поле Подтверждение пароля не может быть пустым." }
-
+    ApplicationRecord.validates :balance, format: { with: @VALID_BALANCE_REGEX, message: "Поле Сумма пополнения введено некорректно." }
+ 
     if user.organization?
       ApplicationRecord.validates :snils, :passport, :surname, :middlename, absence: { message: "Поля СНИЛС, Паспорт, Фамилия, Отчество недопустимы для данного пользователя." }
       ApplicationRecord.validates :firstname, presence: { message: "Поле Наименование не может быть пустым." },

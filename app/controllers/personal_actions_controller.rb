@@ -24,6 +24,20 @@ class PersonalActionsController < ApplicationController
     end
   end
 
+  def fill_balance
+    @user = current_user
+  end
+
+  def update_balance
+    @user = current_user
+    if @user.update(permitted_params)
+      flash[:success] = "Баланс пополнен."
+      redirect_to account_path
+    else
+      render :edit, status: :unprocessable_entity, content_type: "text/html"
+    end
+  end
+
   def property
     @user = current_user
     @vehicles = Vehicle.where(user_id: @user.id)
@@ -54,5 +68,9 @@ class PersonalActionsController < ApplicationController
       if current_user.organization?
         redirect_to account_path
       end
+    end
+
+    def permitted_params
+      params.permit(:balance)
     end
 end

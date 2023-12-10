@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   get 'become_entrepreneur' => 'personal_actions#become_entrepreneur'
   get 'create_business' => 'personal_actions#create_business'
   patch 'confirm_status' => 'personal_actions#confirm_status'
+  get 'fill_balance' => 'personal_actions#fill_balance'
+  patch 'update_balance' => 'personal_actions#update_balance'
   get 'send_files' => 'personal_actions#send_files'
   post 'attach_files' => 'personal_actions#attach_files'
   get 'property' => 'personal_actions#property'

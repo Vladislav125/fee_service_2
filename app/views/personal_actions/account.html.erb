@@ -1,6 +1,7 @@
 <%= @user.full_name %>
 <%= @user.inn %>
 <p><%= link_to "Уплата налогов", become_entrepreneur_path %></p>
+<p><%= link_to "Пополнение баланса", fill_balance_path %></p>
 <p><%= link_to "Наличие задолженности/переплаты", become_entrepreneur_path %></p>
 <p><%= link_to "Подать декларацию", send_files_path %></p>
 <% if @user.files.attached? %>
