@@ -1,2 +1,19 @@
-<%= @vehicles %>
-<%= @estates %>
+<% unless @current_vehicles.empty? %>
+  <% @current_vehicles.each do |vehicle| %>
+    <%= link_to vehicle.state_number, vehicle_path(vehicle.id) %>
+    <%= vehicle.model %>
+    <%= vehicle.vin %>  
+  <% end %>
+<% end %>
+
+<% unless @current_estates.empty? %>
+  <%= @current_estates %>
+<% end %>
+
+<% unless @vehicles.empty? %>
+  <%= @vehicles %>
+<% end %>
+
+<% unless @estates.empty? %>
+  <%= @estates %>
+<% end %>

@@ -40,8 +40,15 @@ class PersonalActionsController < ApplicationController
 
   def property
     @user = current_user
-    @vehicles = Vehicle.where(user_id: @user.id)
-    @estates = Estate.where(user_id: @user.id)
+    @ownerships = Ownership.where(user_id: @user.id)
+    @current_ownerships = @ownerships.select { |object| object.end_date >= Date.parse("#{Time.now.year-1}-12-31") }
+    @ownerships -= @current_ownerships
+    @vehicles = @ownerships.map { |object| Vehicle.find(object.vehicle_id) unless object.vehicle_id.nil? }.uniq.compact
+    @estates = @ownerships.map { |object| Estate.find(object.estate_id) unless object.estate_id.nil? }.uniq.compact
+    @current_vehicles = @current_ownerships.map { |object| Vehicle.find(object.vehicle_id) unless object.vehicle_id.nil? }.uniq.compact
+    @current_estates = @current_ownerships.map { |object| Estate.find(object.estate_id) unless object.estate_id.nil? }.uniq.compact
+    @vehicles -= @current_vehicles
+    @estates -= @current_estates
   end
 
   def send_files

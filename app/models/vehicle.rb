@@ -61,14 +61,6 @@ class Vehicle < ApplicationRecord
             when (251..) then tax_base = 70
           end
       end
-      # tax_time = 0
-      # current_year = Time.now.year
-      # ownnership = current_year - reg_date.year
-      # case ownnership
-      #   when (..0) then tax_time = 0
-      #   when 1 then tax_time = 12 - reg_date.month
-      #   when (2..) then tax_time = 12
-      # end
       self.tax = power * tax_base
     end
 end

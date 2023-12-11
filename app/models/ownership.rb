@@ -1,9 +1,24 @@
 class Ownership < ApplicationRecord
+  before_create :set_tax_sum
+
   validates :reg_date, presence: { message: "Поле Дата начала периода владения не может быть пустым." }
   validates :end_date, presence: { message: "Поле Дата окончания периода владения не может быть пустым." }
   validate :period_must_be_unique
 
   private
+
+    def set_tax_sum
+      if self.vehicle_id != nil
+        object = Vehicle.find(self.vehicle_id)
+      else
+        object = Estate.find(self.estate_id)
+      end
+      tax_time = (end_date.year * 12 + end_date.month) - (reg_date.year * 12 + reg_date.month)
+      if (end_date.day - reg_date.day) > 15
+        tax_time += 1
+      end
+      self.tax_sum = object.tax * tax_time / 12
+    end
 
     def period_must_be_unique
       unless period_is_unique?
