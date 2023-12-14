@@ -7,13 +7,25 @@
 <% end %>
 
 <% unless @current_estates.empty? %>
-  <%= @current_estates %>
+  <% @current_estates.each do |estate| %>
+    <%= link_to estate.cadastaral_number, estate_path(estate.id) %>
+    <%= estate.address %>
+    <%= estate.square %>  
+  <% end %>
 <% end %>
 
 <% unless @vehicles.empty? %>
-  <%= @vehicles %>
+  <% @vehicles.each do |vehicle| %>
+    <%= link_to vehicle.state_number, vehicle_path(vehicle.id) %>
+    <%= vehicle.model %>
+    <%= vehicle.vin %>  
+  <% end %>
 <% end %>
 
 <% unless @estates.empty? %>
-  <%= @estates %>
+  <% @estates.each do |estate| %>
+    <%= link_to estate.cadastaral_number, estate_path(estate.id) %>
+    <%= estate.address %>
+    <%= estate.square %>  
+  <% end %>
 <% end %>

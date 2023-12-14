@@ -1,5 +1,4 @@
 class UserValidator < ActiveModel::Validator
-  @VALID_INCOME_REGEX = /\A0|([1-9]\d*)\z/
   @VALID_SNILS_REGEX = /\A(\d{3}-){3}\d{2}\z/
   @VALID_PASSPORT_REGEX = /\A[1-9]\d{3} \d{6}\z/
   @VALID_SURNAME_REGEX = /\A[А-Я][а-я]*(-[А-Я][а-я]*)*\z/
@@ -9,7 +8,6 @@ class UserValidator < ActiveModel::Validator
 
   def validate(user)
     ApplicationRecord.validates :inn, uniqueness: true
-    ApplicationRecord.validates :income, format: { with: @VALID_INCOME_REGEX, message: "Некорректно заполнено поле доход." }
     ApplicationRecord.validates :password, presence: { message: "Поле Пароль не может быть пустым." },
                        length: { minimum: 8, 
                                  maximum: 100, 

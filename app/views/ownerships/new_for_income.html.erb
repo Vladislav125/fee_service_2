@@ -1,4 +1,7 @@
-<h1>Добавление информации о периоде владении</h1>
+<h1>Добавление информации о периоде налогообложения за <%= Time.now.year - 1 %> год</h1>
+<h3>Доход</h3>
+<h3>Налогоплательщик: <%= @object.full_name %></h3>
+<h3>ИНН налогоплательщика: <%= @object.inn %></h3>
 
 <div id="errors"></div>
 
@@ -16,17 +19,17 @@
   <% end %>
 
   <div>
-    <%= form.label :inn, "ИНН владельца", style: "display: block" %>
-    <%= form.text_field :inn %>
+    <%= form.label :income, "Доход", style: "display: block" %>
+    <%= form.text_field :income %>
   </div>
 
   <div>
-    <%= form.label :reg_date, "Дата начала периода владения", style: "display: block" %>
+    <%= form.label :reg_date, "Дата начала периода", style: "display: block" %>
     <%= form.date_field :reg_date, value: Date.parse("#{Time.now.year-1}-01-01") %>
   </div>
 
   <div>
-    <%= form.label :end_date, "Дата окончания периода владения", style: "display: block" %>
+    <%= form.label :end_date, "Дата окончания периода", style: "display: block" %>
     <%= form.date_field :end_date, value: Date.parse("#{Time.now.year-1}-12-31") %>
   </div>
 

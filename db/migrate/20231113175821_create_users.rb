@@ -12,7 +12,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :middlename, null: true
       t.date :born_date, null: false
       t.string :address, null: false
-      t.integer :income, default: 0, null: false
       t.integer :balance, default: 0, null: false
       t.boolean :admin, default: false
       t.boolean :inspector, default: false

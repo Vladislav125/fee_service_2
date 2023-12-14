@@ -1,0 +1,46 @@
+<h1>Добавление информации о периоде налогообложения за <%= Time.now.year - 1 %> год</h1>
+<% if params[:object_type] == "vehicle" %>
+  <h3>Транспортное средство</h3>
+  <h3>Госномер: <%= @object.state_number %></h3>
+  <h3>Номер кузова: <%= @object.vin %></h3>
+  <h3>Модель: <%= @object.model %></h3>
+<% else %>
+  <h3>Недвижимость</h3>
+  <h3>Кадастровый номер: <%= @object.cadastaral_number %></h3>
+  <h3>Адрес: <%= @object.address %></h3>
+<% end %>
+
+<div id="errors"></div>
+
+<%= form_with(url: "/create_ownership/#{@type}/#{@object.id}", method: :post, local: true) do |form| %>
+  <% if @ownership.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@ownership.errors.count, "error") %> prohibited this ownership from being saved:</h2>
+
+      <ul>
+        <% @ownership.errors.each do |error| %>
+          <li><%= error.message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :inn, "ИНН налогоплательщика", style: "display: block" %>
+    <%= form.text_field :inn %>
+  </div>
+
+  <div>
+    <%= form.label :reg_date, "Дата начала периода", style: "display: block" %>
+    <%= form.date_field :reg_date, value: Date.parse("#{Time.now.year-1}-01-01") %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, "Дата окончания периода", style: "display: block" %>
+    <%= form.date_field :end_date, value: Date.parse("#{Time.now.year-1}-12-31") %>
+  </div>
+
+  <div>
+    <%= form.submit "Продолжить", class: "btn btn-primary" %>
+  </div>
+<% end %>

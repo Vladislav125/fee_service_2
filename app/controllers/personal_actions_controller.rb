@@ -51,6 +51,16 @@ class PersonalActionsController < ApplicationController
     @estates -= @current_estates
   end
 
+  def pay_taxes
+    @user = current_user
+    @vehicle_ownerships = Ownership.where(user_id: @user.id, estate_id: nil)
+    @estate_ownerships = Ownership.where(user_id: @user.id, vehicle_id: nil)
+    @unpaid_vehicles = @vehicle_ownerships.select { |object| !object.paid? }
+    @paid_vehicles = @vehicle_ownerships.select { |object| object.paid? }
+    @unpaid_estates = @estate_ownerships.select { |object| !object.paid? }
+    @paid_estates = @estate_ownerships.select { |object| object.paid? }
+  end
+
   def send_files
   end
 

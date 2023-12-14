@@ -1,6 +1,8 @@
-<p><%= @result.inn %></p>
+<p>ИНН: <%= @result.inn %></p>
 <% if @result.organization? %>
-  <p><%= @result.kpp %></p>
+  <p>КПП: <%= @result.kpp %></p>
+  <p>Наименование организации: <%= @result.full_name %></p>
 <% else %>  
-  <p><%= @result.ipid %></p>
-<p><%= @result.full_name %></p>
+  <p>Идентификатор ИП: <%= @result.ipid %></p>
+  <p>ИП <%= @result.full_name %></p>
+<% end %>
